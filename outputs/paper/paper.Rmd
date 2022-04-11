@@ -14,7 +14,7 @@ output:
 toc: TRUE
 bibliography: references.bib
 ---
-```{r libraries, include = FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+{r libraries, include = FALSE, echo=FALSE, message=FALSE, warning=FALSE}
 if (!require("tidyverse")) install.packages("tidyverse")
 if (!require("dplyr")) install.packages("dplyr")
 if (!require("janitor")) install.packages("janitor")
@@ -38,7 +38,7 @@ library(patchwork)
 library(pdftools)
 library(pointblank)
 library(car)
-```
+
 \newpage
 
 # Introduction 
@@ -52,12 +52,12 @@ The aim of this paper is to study the benefits of increasing the number of young
 
 # Data
 
-```{r, include = FALSE, echo=FALSE, message=FALSE, warning=FALSE}
+{r, include = FALSE, echo=FALSE, message=FALSE, warning=FALSE}
 data <- read_csv(here::here("inputs/data/clean_data.csv"))
-```
+
 
 ## Statistical Software
-This report analyzes data collected by the 1992 Demographic and Health Survey (International Institute for Population Sciences Bombay) to investigate overall national family health across India from 1992-93. The statistical analysis in this report, including preparation of the data set after appropriate cleaning, reformatting and visualization of analyzed data, was done using `R Statistical Programming Language` [@R]. In addition to the base features included in `R`, various other publicly available packaged were utilized for the analysis. For the preparation of the cleaned dataset, the packages `tidyverse` [@tidyverse] were used to manipulate the raw data which was collected from the DHS survey. The cleaned dataset was then analyzed using `dplyr` [@dplyr] and `pointblank` [@pointblank] and visualized using `ggplot2` [@ggplot2] and `car` [@car]. This report was constructed in *R Markdown* format and formatted using the following packages – `knitr` [@knitr] and `bookdown` [@bookdown]. Finally, to maintain a completely reproducible workflow, `here` [@here] was used to index the location of the files necessary to create this report. 
+This report analyzes data collected by the 1992 Demographic and Health Survey (International Institute for Population Sciences Bombay) to investigate overall national family health across India from 1992-93. The statistical analysis in this report, including preparation of the data set after appropriate cleaning, reformatting and visualization of analyzed data, was done using `R Statistical Programming Language` [@R]. In addition to the base features included in `R`, various other publicly available packaged were utilized for the analysis. For the preparation of the cleaned dataset, the packages `tidyverse` [@tidyverse] were used to manipulate the raw data which was collected from the DHS survey. The cleaned dataset was then analyzed using `dplyr` [@dplyr] and `pointblank` [@pointblank] and visualized using `ggplot2` [@ggplot2] and `car` [@car]. This report was constructed in R Markdown format and formatted using the following packages – `knitr` [@knitr] and `bookdown` [@bookdown]. Finally, to maintain a completely reproducible workflow, `here` [@here] was used to index the location of the files necessary to create this report. 
 
 The raw data used for analysis in this paper was taken from the publicly available DHS final report. In order to create the required dataset, one full-page table containing the variables pertaining to the topic of this paper was taken from the DHS program final report using the `pdftools` [@pdftools] package. Screenshots of the data table for the DHS final report are available in the appendix. 
 
@@ -233,67 +233,68 @@ Finally, an important weakness of the survey is the possibility of the presence 
 
 
 # DHS Fact Sheet 
-```{r, warning=FALSE, echo=FALSE, fig.cap="Screen Grab of Tables used as the dataset"}
+{r, warning=FALSE, echo=FALSE, out.width="75%", fig.cap="Screen Grab of Tables used as the dataset"}
 include_graphics(here::here("outputs/figures/1.jpeg"))
 include_graphics(here::here("outputs/figures/2.jpeg"))
-```
+
 
 \newpage
+
 # Figures 
-```{r one, fig.cap="A Scatterplot showing the Relationship between the Percentage of Females Attending Schools and Percentage of Women Married before Age 18", echo = FALSE, message = FALSE, warning = FALSE}
+{r one, fig.cap="A Scatterplot showing the Relationship between the Percentage of Females Attending Schools and Percentage of Women Married before Age 18", echo = FALSE, message = FALSE, warning = FALSE}
 data %>%
   ggplot(mapping = aes(x = `Percent attending school (females age 6-14)`, y = `Percent women age 20-24 married before age 18`)) +
   geom_point() +
   geom_smooth(method = lm, colour = "red") +
   theme_minimal() +
   labs(x = "Percentage of Females Attending Schools", y = "Percentage of Women Married Before Age 18")
-```
 
-```{r two, fig.cap="A Scatterplot showing the Relationship between the Percentage of Females Attending Schools and Percentage of Women Using any Contraceptive Method", echo = FALSE, message = FALSE, warning = FALSE}
+
+{r two, fig.cap="A Scatterplot showing the Relationship between the Percentage of Females Attending Schools and Percentage of Women Using any Contraceptive Method", echo = FALSE, message = FALSE, warning = FALSE}
 data %>%
   ggplot(mapping = aes(x = `Percent attending school (females age 6-14)`, y = `Percent of women using any contraceptive method`)) +
   geom_point() +
   geom_smooth(method = lm, colour = "red") +
   theme_minimal() +
   labs(x = "Percentage of Females Attending Schools", y = "Percentage of Women Using any Contraceptive Method" )
-```
 
-```{r three, fig.cap="A Scatterplot showing the Relationship between the Percentage of Females Attending Schools and Unmet Need for Family Planning", echo = FALSE, message = FALSE, warning = FALSE}
+
+{r three, fig.cap="A Scatterplot showing the Relationship between the Percentage of Females Attending Schools and Unmet Need for Family Planning", echo = FALSE, message = FALSE, warning = FALSE}
 data %>%
   ggplot(mapping = aes(x = `Percent attending school (females age 6-14)`, y = `Unmet need for family planning`)) +
   geom_point() +
   geom_smooth(method = lm, colour = "red") +
   theme_minimal() +
   labs(x = "Percentage of Females Attending Schools", y = "Unmet Need for Family Planning" )
-```
 
-```{r four, fig.cap="A Scatterplot showing the Relationship between the Percentage of Females Attending Schools and Unmet Need for Family Planning", echo = FALSE, message = FALSE, warning = FALSE}
+
+{r four, fig.cap="A Scatterplot showing the Relationship between the Percentage of Females Attending Schools and Unmet Need for Family Planning", echo = FALSE, message = FALSE, warning = FALSE}
 data %>%
   ggplot(mapping = aes(x = `Percent attending school (females age 6-14)`, y = `Mothers receiving antenatal care (last 4 years)`)) +
   geom_point() +
   geom_smooth(method = lm, colour = "red") +
   theme_minimal() +
   labs(x = "Percentage of Females Attending Schools", y = "Percentage of Mothers Receiving Antenatal Care" )
-```
 
-```{r five, fig.cap="A Scatterplot showing the Relationship between the Percentage of Females Attending Schools and Percentage of Children Fully Immunized", echo = FALSE, message = FALSE, warning = FALSE}
+
+{r five, fig.cap="A Scatterplot showing the Relationship between the Percentage of Females Attending Schools and Percentage of Children Fully Immunized", echo = FALSE, message = FALSE, warning = FALSE}
 data %>%
   ggplot(mapping = aes(x = `Percent attending school (females age 6-14)`, y = `Percent of children fully immunized (age 12-23 months)`)) +
   geom_point() +
   geom_smooth(method = lm, colour = "red") +
   theme_minimal() +
   labs(x = "Percentage of Females Attending Schools", y = "Percentage of Children Fully Immunized" )
-```
 
-```{r six, fig.cap="A Scatterplot showing the Relationship between the Percentage of Females Attending Schools and Percentage of Children Underweight", echo = FALSE, message = FALSE, warning = FALSE}
+
+{r six, fig.cap="A Scatterplot showing the Relationship between the Percentage of Females Attending Schools and Percentage of Children Underweight", echo = FALSE, message = FALSE, warning = FALSE}
 data %>%
   ggplot(mapping = aes(x = `Percent attending school (females age 6-14)`, y = `Percent of children under 4 years of age underweight`)) +
   geom_point() +
   geom_smooth(method = lm, colour = "red") +
   theme_minimal() +
   labs(x = "Percentage of Females Attending Schools", y = "Percentage of Children Underweight" )
-```
+
 
 \newpage
 
-# References 
+# References
